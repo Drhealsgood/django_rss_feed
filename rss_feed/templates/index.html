@@ -1,7 +1,11 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'rss_feed/style.css' %}" />
+
 {% if feed_list %}
-    <ul>
+    <ul class="_feeds">
     {% for feed in feed_list %}
-        <li><a href="/rss_feed/{{ feed.id }}/">{{ feed.name }}</a></li>
+        <li class="_feed" id="_feed_{{ feed.id }}"><a href="/rss_feed/{{ feed.id }}/">{{ feed.name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

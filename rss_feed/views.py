@@ -14,3 +14,6 @@ def index(request):
         'feed_list': feed_list,
     })
     return HttpResponse(template.render(context))
+    
+def feed_results(request, feed_title):
+    return HttpResponse("You're look at feed {0}".format(feed_title))
