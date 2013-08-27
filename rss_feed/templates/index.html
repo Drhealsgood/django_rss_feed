@@ -1,0 +1,9 @@
+{% if feed_list %}
+    <ul>
+    {% for feed in feed_list %}
+        <li><a href="/rss_feed/{{ feed.id }}/">{{ feed.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No feeds are avilable</p>
+{% endif %}
