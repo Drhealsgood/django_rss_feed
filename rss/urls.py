@@ -5,6 +5,7 @@ from django.conf.urls import patterns, include, url
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^rss_feed/', include('rss_feed.urls')),
     # Examples:
     # url(r'^$', 'rss.views.home', name='home'),
     # url(r'^rss/', include('rss.foo.urls')),
