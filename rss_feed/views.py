@@ -4,6 +4,10 @@ from django.template import RequestContext, loader
 
 from rss_feed.models import Feed
 
+import feedparser
+
+
+
 def index(request):
     """
     index lists the feeds we are tracking
@@ -15,5 +19,14 @@ def index(request):
     })
     return HttpResponse(template.render(context))
     
-def feed_results(request, feed_title):
-    return HttpResponse("You're look at feed {0}".format(feed_title))
+def feed_results(request, feed_url):
+    """
+    feed_results returns the results of given feed
+    """
+    results = feedparser.parse(feed_url)
+    template = loader.get_template('feed_results.html')
+    context = RequestContext(request, {
+        'title': results['feed']['title'],
+        'url'  : results['feed']['link']
+    })
+    return HttpResponse(template.render(context))

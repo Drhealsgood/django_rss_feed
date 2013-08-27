@@ -1,13 +1,19 @@
 from django.db import models
 
 # Create your models here.
+"""
+add a feed
+Feed().create(feed['feed']['title'],feed['href'],feed['feed']['link'])
+"""
+
 class Feed(models.Model):
     name    = models.CharField(max_length=50)
+    feed_url= models.CharField(max_length=50)
     url     = models.CharField(max_length=50)
     
     @classmethod
-    def create(cls, ititle, iurl):
-        feed = cls(name=ititle,url=iurl)
+    def create(cls, ititle, furl, iurl):
+        feed = cls(name=ititle,feed_url=furl,url=iurl)
         return feed
     
     def __unicode__(self):
@@ -16,10 +22,3 @@ class Feed(models.Model):
     def __str__(self):
         return self.name
     
-class Feed_Item(models.Model):    
-    feed = models.ForeignKey(Feed)
-    link = models.CharField(max_length=50)
-    title = models.CharField(max_length=50)
-    
-    def __unicode__(self):
-        return self.title

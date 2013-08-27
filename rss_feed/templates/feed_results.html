@@ -1,0 +1,11 @@
+{% load staticfiles %}
+
+<link rel="Stylesheet" type="text/css" href="{% static 'rss_feed/style.css' %}" />
+
+{% if title %}
+    <div id="feed_info_{{ title.id }}" class="_feed_info">
+        <p>{{ title }}: {{ url }}</p>
+    </div>
+{% else %}
+    <p>No feeds are available</p>
+{% endif %}
