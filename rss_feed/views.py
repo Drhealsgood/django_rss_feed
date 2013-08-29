@@ -19,14 +19,15 @@ def index(request):
     })
     return HttpResponse(template.render(context))
     
-def feed_results(request, feed_url):
+def feed_results(request, feed):
     """
     feed_results returns the results of given feed
     """
     results = feedparser.parse(feed_url)
     template = loader.get_template('feed_results.html')
     context = RequestContext(request, {
-        'title': results['feed']['title'],
-        'url'  : results['feed']['link']
+        'title'  : results['feed']['title'],
+        'url'    : results['feed']['link'],
+        'entries': results['entries']
     })
     return HttpResponse(template.render(context))
